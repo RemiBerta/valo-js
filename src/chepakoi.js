@@ -5,7 +5,7 @@ async function fetchAllAgents() {
   const response = await fetch(`https://valorant-api.com/v1/agents?language=${currentLanguage}&isPlayableCharacter=true`);
   return (await response.json()).data;
 }
-let currentLanguage = 'fr-FR';
+
 const agents = await fetchAllAgents();
 const app = document.getElementById('app');
 app.innerHTML = '';
@@ -15,7 +15,11 @@ rolesDiv.id = 'rolesDiv';
 rolesDiv.className = 'mb-5 p-2';
 app.appendChild(rolesDiv);
 
-const langDiv = document.getElementById('languageSelectorDiv');
+
+if (!app || !rolesDiv || !langDiv) {
+  console.error('Un ou plusieurs éléments (#app, #rolesDiv, #languageSelectorDiv) sont manquants dans le HTML.');
+  throw new Error('Structure HTML incomplète');
+}
 
 const languages = [
   { code: 'fr-FR', label: '🇫🇷' },
@@ -27,24 +31,10 @@ const languages = [
   { code: 'ar-AE', label: 'ᴀʀ' },
 ];
 
-
+let currentLanguage = 'fr-FR';
 let currentRole = 'all';
 
-// === Langue : Création du sélecteur ===
-const langSelector = document.createElement('select');
-langSelector.id = 'languageSelector';
-languages.forEach(lang => {
-  const option = document.createElement('option');
-  option.value = lang.code;
-  option.textContent = lang.label;
-  langSelector.appendChild(option);
-});
-langSelector.value = currentLanguage;
-langDiv.appendChild(langSelector);
-langSelector.addEventListener('change', async (e) => {
-  currentLanguage = e.target.value;
-  await updateAgents();
-});
+
 
 // === Mise à jour des agents affichés ===
 async function updateAgents() {

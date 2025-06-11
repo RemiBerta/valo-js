@@ -2,6 +2,69 @@
 
 li {
   list-style-type: none;
-  background-color: rgb(64, 132, 96);
 }
 
+.agent-card {
+  transition: height 0.5s ease-in-out;
+  overflow: hidden;
+}
+
+.agent-expand {
+  height: 700px;
+}
+.agent-collapse {
+  height: 20rem; 
+}
+
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.8s ease-in-out;
+}
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+
+#rolesDiv {
+  display: flex;
+  justify-content: center;
+
+}
+
+#roleSelector {
+  background-color: #1f2937; 
+  color: white;
+  padding: 0.75rem 1rem;
+  font-size: 1.5rem;
+  font-weight: 900;
+  border: none;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 25px;
+}
+
+#roleSelector:hover {
+  background-color: #374151; 
+}
+
+#roleSelector:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #e65225; 
+}
+
+
+.language-btn {
+  font-size: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0 0.5rem;
+  transition: transform 0.2s;
+}
+
+.language-btn:hover {
+  transform: scale(1.2);
+}
